@@ -1,25 +1,29 @@
-const sequelize = require('../config/db');
+const sequelize = require("../config/db");
 
 // Importation des modèles
-const User = require('./User');
-const Entreprise = require('./entreprise');
+const User = require("./User");
+const Place = require("./Place");
+const Company = require("./Company");
 
 // Définition des relations
-User.belongsTo(Entreprise);
-Entreprise.hasMany(User);
+User.belongsTo(Place);
+Place.hasMany(User);
+Company.hasMany(User);
 
 // Synchronisation des modèles avec la base de données
-sequelize.sync({ force: false })
-    .then(() => {
-        console.log("Modèles synchronisés avec la base de données !");
-    })
-    .catch((error) => {
-        console.error("Erreur lors de la synchronisation :", error);
-    });
+sequelize
+  .sync({ force: true })
+  .then(() => {
+    console.log("Modèles synchronisés avec la base de données !");
+  })
+  .catch((error) => {
+    console.error("Erreur lors de la synchronisation :", error);
+  });
 
 // Exportation des modèles et de l'instance sequelize
 module.exports = {
   sequelize,
   User,
-  Entreprise
+  Place,
+  Company,
 };
