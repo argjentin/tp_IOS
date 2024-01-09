@@ -26,6 +26,7 @@ class UserController {
     try {
       const user = await UserService.create(req.body);
       res.status(201).json(user);
+      console.log(user);
     } catch (err) {
       res.status(500).json(err);
     }
@@ -48,6 +49,7 @@ class UserController {
       res.status(200).json("OK");
     } catch (err) {
       res.status(500).json(err);
+      console.log(err);
     }
   }
 }

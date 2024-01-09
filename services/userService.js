@@ -33,7 +33,7 @@ class UserService {
       throw new Error("User or place not found");
     }
 
-    await user.togglePlace(place);
+    await user.setPlace(place);
   }
 }
 
