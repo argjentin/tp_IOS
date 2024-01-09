@@ -50,4 +50,6 @@ const insertRandomUserData = async () => {
 };
 
 // Appel de la fonction pour insérer des données aléatoires
-insertRandomUserData();
+// insertRandomUserData();
+
+module.exports = insertRandomUserData;
