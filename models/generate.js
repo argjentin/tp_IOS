@@ -4,6 +4,19 @@ const User = require("../models/User");
 const Place = require("../models/Place");
 const Company = require("../models/Company");
 
+const predefinedCoordinates = [
+  { longitude: 6.861743, latitude: 47.639821 },
+  { longitude: 6.862951, latitude: 47.639319 },
+  { longitude: 6.864146, latitude: 47.638491 },
+  { longitude: 6.864657, latitude: 47.639099 },
+  { longitude: 6.862027, latitude: 47.638157 },
+  { longitude: 6.862809, latitude: 47.638582 },
+  { longitude: 6.86557, latitude: 47.638809 },
+  { longitude: 6.862749, latitude: 47.63836 },
+  { longitude: 6.864169, latitude: 47.638333 },
+  { longitude: 6.862601, latitude: 47.638442 },
+];
+
 const generateRandomUserData = () => {
   return {
     firstname: faker.name.firstName(),
@@ -13,11 +26,17 @@ const generateRandomUserData = () => {
 };
 
 const generateRandomPlaceData = () => {
+  // const randomIndex = Math.floor(Math.random() * predefinedCoordinates.length);
+  // const selectedCoordinates = predefinedCoordinates[randomIndex];
+  // I want to create all latitudes and longitudes for 10 places
+  const selectedCoordinates = predefinedCoordinates.shift();
+  predefinedCoordinates.push(selectedCoordinates);
+
   return {
     name: faker.company.companyName(),
     description: faker.company.catchPhrase(),
-    longitude: faker.address.longitude(),
-    latitude: faker.address.latitude(),
+    longitude: selectedCoordinates.longitude,
+    latitude: selectedCoordinates.latitude,
   };
 };
 
@@ -27,7 +46,6 @@ const generateRandomCompanyData = () => {
     description: faker.company.catchPhrase(),
   };
 };
-
 const insertRandomUserData = async () => {
   try {
     // Générez 10 lieux (places) aléatoires

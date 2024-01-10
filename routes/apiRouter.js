@@ -27,4 +27,6 @@ router.get("/places/:id", PlaceController.getById);
 
 router.get("/companies", CompanyController.getAll);
 
+router.get("/companies/:id", CompanyController.getById);
+
 module.exports = router;
