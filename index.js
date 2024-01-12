@@ -3,6 +3,12 @@ const apiRouter = require("./routes/apiRouter");
 const app = express();
 require("dotenv").config();
 
+// cors
+const cors = require("cors");
+
+// Enable CORS for all origins and methods
+app.use(cors());
+
 const { sequelize, User, Place, Company } = require("./models");
 
 const IOS_API_PORT = process.env.IOS_API_PORT || 3001;
